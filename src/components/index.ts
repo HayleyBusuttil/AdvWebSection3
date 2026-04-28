@@ -3,3 +3,7 @@ export { ProductCard } from './ProductCard';
 export { FilterSidebar } from './FilterSidebar';
 export { CartSidebar } from './CartSidebar';
 export { FavoritesSidebar } from './FavoritesSidebar';
+export { Toast } from './Toast';
+export { ProductGallery } from './ProductGallery';
+export { SearchBar } from './SearchBar';
+export { ProductModal } from './ProductModal';

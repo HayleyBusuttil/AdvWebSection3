@@ -1,0 +1,46 @@
+'use client';
+
+import { useState } from 'react';
+
+interface SearchBarProps {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+}
+
+export function SearchBar({
+  value,
+  onChange,
+  placeholder = 'Search products...',
+}: SearchBarProps) {
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <div className="relative">
+      <div
+        className={`relative border rounded-lg transition-all duration-200 ${
+          isFocused ? 'border-gray-900 shadow-md' : 'border-gray-300'
+        }`}
+      >
+        <span className="absolute left-3 top-3 text-gray-400">🔍</span>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder={placeholder}
+          className="w-full pl-10 pr-10 py-2 bg-transparent focus:outline-none text-sm"
+        />
+        {value && (
+          <button
+            onClick={() => onChange('')}
+            className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 transition"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
