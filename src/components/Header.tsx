@@ -32,10 +32,10 @@ export function Header({
             <Link href="/" className="text-sm text-gray-700 hover:text-gray-900 transition">
               Shop
             </Link>
-            <Link href="#" className="text-sm text-gray-700 hover:text-gray-900 transition">
+            <Link href="/about" className="text-sm text-gray-700 hover:text-gray-900 transition">
               About
             </Link>
-            <Link href="#" className="text-sm text-gray-700 hover:text-gray-900 transition">
+            <Link href="/contact" className="text-sm text-gray-700 hover:text-gray-900 transition">
               Contact
             </Link>
           </nav>
@@ -86,10 +86,10 @@ export function Header({
             <Link href="/" className="text-sm text-gray-700 hover:text-gray-900 transition">
               Shop
             </Link>
-            <Link href="#" className="text-sm text-gray-700 hover:text-gray-900 transition">
+            <Link href="/about" className="text-sm text-gray-700 hover:text-gray-900 transition">
               About
             </Link>
-            <Link href="#" className="text-sm text-gray-700 hover:text-gray-900 transition">
+            <Link href="/contact" className="text-sm text-gray-700 hover:text-gray-900 transition">
               Contact
             </Link>
           </nav>
