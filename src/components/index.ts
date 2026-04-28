@@ -7,3 +7,5 @@ export { Toast } from './Toast';
 export { ProductGallery } from './ProductGallery';
 export { SearchBar } from './SearchBar';
 export { ProductModal } from './ProductModal';
+export { ProductCarousel } from './ProductCarousel';
+export { RecentlyViewedSection } from './RecentlyViewedSection';

@@ -9,8 +9,10 @@ import {
   FavoritesSidebar,
   ProductModal,
   Toast,
+  ProductCarousel,
+  RecentlyViewedSection,
 } from '@/components';
-import { useCart, useFavorites, useProductFilters } from '@/hooks';
+import { useCart, useFavorites, useProductFilters, useRecentlyViewed } from '@/hooks';
 import { PRODUCTS } from '@/data/products';
 import { Product } from '@/types';
 
@@ -29,6 +31,12 @@ export default function Home() {
   const { favorites, toggleFavorite, isFavorite, favoriteCount } = useFavorites();
   const { filters, filteredProducts, updateFilters, toggleCategory, resetFilters } =
     useProductFilters(PRODUCTS);
+  const { recentlyViewed, addToRecentlyViewed } = useRecentlyViewed();
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    addToRecentlyViewed(product.id);
+  };
 
   const handleAddToCart = (product: Product, quantity = 1) => {
     addToCart(product, quantity);
@@ -54,8 +62,23 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto">
-        <div className="flex gap-6 p-4">
+      <main className="max-w-7xl mx-auto p-4">
+        {/* Featured Carousel */}
+        <ProductCarousel
+          products={PRODUCTS.filter((p) => p.rating >= 4.7)}
+          title="Featured Collection"
+          onProductClick={handleProductClick}
+        />
+
+        {/* Recently Viewed */}
+        <RecentlyViewedSection
+          recentlyViewed={recentlyViewed}
+          products={PRODUCTS}
+          onProductClick={handleProductClick}
+        />
+
+        {/* Main Content Section */}
+        <div className="flex gap-6 mt-8">
           {/* Filters Sidebar */}
           <FilterSidebar
             filters={filters}
@@ -90,7 +113,11 @@ export default function Home() {
             {filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {filteredProducts.map((product) => (
-                  <div key={product.id} onClick={() => setSelectedProduct(product)}>
+                  <div
+                    key={product.id}
+                    onClick={() => handleProductClick(product)}
+                    className="cursor-pointer"
+                  >
                     <ProductCard
                       product={product}
                       isFavorite={isFavorite(product.id)}
