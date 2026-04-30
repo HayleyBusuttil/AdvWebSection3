@@ -27,6 +27,7 @@ export function ProductCarousel({
   };
 
   const product = products[currentIndex];
+  const ratingStars = Math.round(product.rating);
 
   return (
     <div className="mb-12">
@@ -53,7 +54,11 @@ export function ProductCarousel({
               <p className="text-gray-600 mb-4">{product.description}</p>
               <div className="flex items-center gap-4">
                 <div>
-                  <span className="text-yellow-400">★</span>
+                  <div className="inline-flex items-center gap-1 align-middle">
+                    {Array.from({ length: ratingStars }).map((_, index) => (
+                      <img key={index} src="/icons/star.svg" alt="" aria-hidden="true" className="h-4 w-4" />
+                    ))}
+                  </div>
                   <span className="text-sm text-gray-700 ml-2">{product.rating}</span>
                 </div>
                 <span className="text-2xl font-semibold text-gray-900">
@@ -68,13 +73,19 @@ export function ProductCarousel({
                 onClick={goToPrevious}
                 className="px-4 py-2 border border-gray-300 text-gray-900 rounded-lg hover:bg-gray-100 transition"
               >
-                ← Previous
+                <span className="inline-flex items-center gap-2">
+                  <img src="/icons/left-arrow.svg" alt="" aria-hidden="true" className="h-4 w-4" />
+                  Previous
+                </span>
               </button>
               <button
                 onClick={goToNext}
                 className="px-4 py-2 border border-gray-300 text-gray-900 rounded-lg hover:bg-gray-100 transition"
               >
-                Next →
+                <span className="inline-flex items-center gap-2">
+                  Next
+                  <img src="/icons/right-arrow.svg" alt="" aria-hidden="true" className="h-4 w-4" />
+                </span>
               </button>
               <span className="ml-auto text-sm text-gray-600 self-center">
                 {currentIndex + 1} / {products.length}

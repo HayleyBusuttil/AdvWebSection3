@@ -36,6 +36,7 @@ export function FavoritesSidebar({
         className={`fixed left-0 top-0 h-screen w-full md:w-96 bg-white border-r border-gray-200 shadow-lg z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        data-testid="favorites-sidebar"
       >
         <div className="h-full flex flex-col">
           {/* Header */}
@@ -44,8 +45,10 @@ export function FavoritesSidebar({
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg transition"
+              aria-label="Close favorites"
+              data-testid="close-favorites-button"
             >
-              ✕
+              <img src="/icons/close.svg" alt="" aria-hidden="true" className="h-5 w-5" />
             </button>
           </div>
 
@@ -54,7 +57,7 @@ export function FavoritesSidebar({
             {favoriteProducts.length === 0 ? (
               <div className="flex items-center justify-center h-full text-center">
                 <div>
-                  <p className="text-2xl mb-2">♡</p>
+                  <img src="/icons/heart-outline.svg" alt="" aria-hidden="true" className="mx-auto mb-2 h-8 w-8" />
                   <p className="text-gray-600">No favorites yet</p>
                 </div>
               </div>

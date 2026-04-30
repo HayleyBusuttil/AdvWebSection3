@@ -30,7 +30,8 @@ export function Toast({ message, type, onClose }: ToastProps) {
         ? 'text-red-800'
         : 'text-blue-800';
 
-  const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+  const iconSrc =
+    type === 'success' ? '/icons/success.svg' : type === 'error' ? '/icons/error.svg' : '/icons/info.svg';
 
   return (
     <div
@@ -39,13 +40,14 @@ export function Toast({ message, type, onClose }: ToastProps) {
       }`}
     >
       <div className="flex items-center gap-3">
-        <span className="text-lg font-semibold">{icon}</span>
+        <img src={iconSrc} alt="" aria-hidden="true" className="h-5 w-5" />
         <span>{message}</span>
         <button
           onClick={handleClose}
           className="ml-4 hover:opacity-70 transition"
+          aria-label="Dismiss notification"
         >
-          ✕
+          <img src="/icons/close.svg" alt="" aria-hidden="true" className="h-4 w-4" />
         </button>
       </div>
     </div>

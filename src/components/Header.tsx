@@ -47,8 +47,9 @@ export function Header({
               onClick={onFavoritesClick}
               className="relative p-2 hover:bg-gray-100 rounded-lg transition"
               aria-label="Favorites"
+              data-testid="header-favorites-button"
             >
-              <span className="text-xl">♡</span>
+              <img src="/icons/heart-outline.svg" alt="" aria-hidden="true" className="h-5 w-5" />
               {favoriteCount > 0 && (
                 <span className="absolute top-0 right-0 bg-gray-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {favoriteCount}
@@ -61,8 +62,9 @@ export function Header({
               onClick={onCartClick}
               className="relative p-2 hover:bg-gray-100 rounded-lg transition"
               aria-label="Shopping Cart"
+              data-testid="header-cart-button"
             >
-              <span className="text-xl">🛒</span>
+              <img src="/icons/cart.svg" alt="" aria-hidden="true" className="h-5 w-5" />
               {cartCount > 0 && (
                 <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                   {cartCount}
@@ -74,8 +76,15 @@ export function Header({
             <button
               className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              data-testid="mobile-menu-button"
             >
-              <span className="text-xl">{mobileMenuOpen ? '✕' : '☰'}</span>
+              <img
+                src={mobileMenuOpen ? '/icons/close.svg' : '/icons/menu.svg'}
+                alt=""
+                aria-hidden="true"
+                className="h-5 w-5"
+              />
             </button>
           </div>
         </div>

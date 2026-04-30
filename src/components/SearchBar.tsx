@@ -22,7 +22,7 @@ export function SearchBar({
           isFocused ? 'border-gray-900 shadow-md' : 'border-gray-300'
         }`}
       >
-        <span className="absolute left-3 top-3 text-gray-400">🔍</span>
+        <img src="/icons/search.svg" alt="" aria-hidden="true" className="absolute left-3 top-3 h-4 w-4" />
         <input
           type="text"
           value={value}
@@ -36,8 +36,10 @@ export function SearchBar({
           <button
             onClick={() => onChange('')}
             className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 transition"
+            aria-label="Clear search"
+            data-testid="clear-search-button"
           >
-            ✕
+            <img src="/icons/close.svg" alt="" aria-hidden="true" className="h-4 w-4" />
           </button>
         )}
       </div>

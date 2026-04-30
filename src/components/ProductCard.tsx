@@ -30,6 +30,7 @@ export function ProductCard({
       className="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 bg-white hover:border-gray-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      data-testid={`product-card-${product.id}`}
     >
       {/* Product Image Area */}
       <div className="relative bg-gray-50 aspect-square flex items-center justify-center overflow-hidden">
@@ -46,22 +47,40 @@ export function ProductCard({
 
         {/* Favorite Button - Always Visible */}
         <button
-          onClick={() => onToggleFavorite(product.id)}
+          onClick={(event) => {
+            event.stopPropagation();
+            onToggleFavorite(product.id);
+          }}
           className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition z-10"
           aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          data-testid={`favorite-button-${product.id}`}
         >
-          <span className="text-lg">{isFavorite ? '♥' : '♡'}</span>
+          <img
+            src={isFavorite ? '/icons/heart-filled.svg' : '/icons/heart-outline.svg'}
+            alt=""
+            aria-hidden="true"
+            className="h-5 w-5"
+          />
         </button>
 
         {/* Add to Cart Button - Show on Hover */}
         {product.inStock && (
           <button
-            onClick={handleAddToCart}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleAddToCart();
+            }}
             className={`absolute bottom-3 left-3 right-3 py-2 px-4 bg-gray-900 text-white rounded-lg font-medium transition-all duration-300 ${
               isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
             } ${showAddedFeedback ? 'bg-green-600' : ''}`}
+            data-testid={`add-to-cart-button-${product.id}`}
           >
-            {showAddedFeedback ? '✓ Added' : 'Add to Cart'}
+            <span className="inline-flex items-center justify-center gap-2">
+              {showAddedFeedback && (
+                <img src="/icons/success.svg" alt="" aria-hidden="true" className="h-4 w-4" />
+              )}
+              {showAddedFeedback ? 'Added' : 'Add to Cart'}
+            </span>
           </button>
         )}
       </div>
@@ -73,7 +92,7 @@ export function ProductCard({
 
         {/* Rating */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-yellow-400">★</span>
+          <img src="/icons/star.svg" alt="" aria-hidden="true" className="h-4 w-4" />
           <span className="text-sm text-gray-700">{product.rating}</span>
         </div>
 

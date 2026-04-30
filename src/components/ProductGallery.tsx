@@ -17,6 +17,7 @@ export function ProductGallery({
   onToggleFavorite,
 }: ProductGalleryProps) {
   const [quantity, setQuantity] = useState(1);
+  const ratingStars = Math.round(product.rating);
 
   const handleAddToCart = () => {
     onAddToCart(product, quantity);
@@ -38,8 +39,10 @@ export function ProductGallery({
           </p>
           <h1 className="text-3xl font-light text-gray-900 mb-2">{product.name}</h1>
           <div className="flex items-center gap-2">
-            <div className="flex text-yellow-400">
-              {'★'.repeat(Math.round(product.rating))}
+            <div className="flex items-center gap-1">
+              {Array.from({ length: ratingStars }).map((_, index) => (
+                <img key={index} src="/icons/star.svg" alt="" aria-hidden="true" className="h-4 w-4" />
+              ))}
             </div>
             <span className="text-sm text-gray-600">{product.rating} ({Math.round(product.rating * 100)} reviews)</span>
           </div>
@@ -98,7 +101,12 @@ export function ProductGallery({
                     : 'border-gray-300 text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                {isFavorite ? '♥' : '♡'}
+                <img
+                  src={isFavorite ? '/icons/heart-filled.svg' : '/icons/heart-outline.svg'}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                />
               </button>
             </div>
           </div>

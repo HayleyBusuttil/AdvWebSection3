@@ -130,7 +130,7 @@ export default function Home() {
             ) : (
               <div className="flex items-center justify-center py-16">
                 <div className="text-center">
-                  <p className="text-3xl mb-3">🔍</p>
+                  <img src="/icons/search.svg" alt="" aria-hidden="true" className="mx-auto mb-3 h-8 w-8" />
                   <p className="text-gray-600 mb-2">No products match your criteria</p>
                   <button
                     onClick={resetFilters}

@@ -36,6 +36,7 @@ export function CartSidebar({
         className={`fixed right-0 top-0 h-screen w-full md:w-96 bg-white border-l border-gray-200 shadow-lg z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        data-testid="cart-sidebar"
       >
         <div className="h-full flex flex-col">
           {/* Header */}
@@ -44,8 +45,10 @@ export function CartSidebar({
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg transition"
+              aria-label="Close cart"
+              data-testid="close-cart-button"
             >
-              ✕
+              <img src="/icons/close.svg" alt="" aria-hidden="true" className="h-5 w-5" />
             </button>
           </div>
 
@@ -54,7 +57,7 @@ export function CartSidebar({
             {cart.length === 0 ? (
               <div className="flex items-center justify-center h-full text-center">
                 <div>
-                  <p className="text-2xl mb-2">🛒</p>
+                  <img src="/icons/cart.svg" alt="" aria-hidden="true" className="mx-auto mb-2 h-8 w-8" />
                   <p className="text-gray-600">Your cart is empty</p>
                 </div>
               </div>

@@ -125,8 +125,9 @@ export default function Contact() {
             <div>
               {submitted && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-green-700 font-medium">
-                    ✓ Thank you for your message! We'll get back to you soon.
+                  <p className="text-green-700 font-medium flex items-center gap-2">
+                    <img src="/icons/success.svg" alt="" aria-hidden="true" className="h-4 w-4" />
+                    <span>Thank you for your message! We'll get back to you soon.</span>
                   </p>
                 </div>
               )}
